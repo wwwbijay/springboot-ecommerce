@@ -16,7 +16,6 @@ import com.example.ecommerce.model.User;
 import com.example.ecommerce.service.AuthenticationService;
 import com.example.ecommerce.service.JwtService;
 
-
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
