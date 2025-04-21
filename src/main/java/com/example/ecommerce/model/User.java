@@ -9,6 +9,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,9 +29,10 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String fullName;
 
-    @Column(unique = true, length=100, nullable = false)
+    @Column(unique = true, length = 100, nullable = false)
     private String email;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
@@ -46,15 +49,27 @@ public class User implements UserDetails {
         return List.of();
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
     public String getUsername() {
         return email;
     }
-    
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

@@ -14,7 +14,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cart {
-@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -51,5 +51,4 @@ public class Cart {
         this.totalAmount = totalAmount;
     }
 
-    
 }
